@@ -1,0 +1,72 @@
+﻿@model IEnumerable<Exam.Models.Exam.Employee>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                class
+            </th>
+            <th>
+               ID
+            </th>
+            <th>
+               Name
+            </th>
+            <th>
+                Image
+            </th>
+            <th>
+               Date Naissance
+            </th>
+            <th>
+               Rgion
+            </th>
+           <th>
+               Action
+           </th>
+            <th></th>
+        </tr>
+        
+    </thead>
+    <tbody >
+@foreach (var item in Model) {
+            <tr style="background-color:aliceblue;border:solid 1px black">
+                <td>
+                    @Html.DisplayFor(modelItem => item.Department.DepartmentName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EmployeeId)
+                </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EmployeeName)
+            </td>
+            <td>
+                <img src="Images/@item.ImageUser" style="width:35px;height:35px">
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BirthDate)
+            </td>
+           
+            
+            <td>
+                @Html.DisplayFor(modelItem => item.NationalId)
+            </td>
+           
+            <td>
+                    @Html.ActionLink("Edit", "Edit", new {  id=item.EmployeeId }) |
+                    @Html.ActionLink("Delete", "Delete", new { id=item.EmployeeId  }
+                ,new{onclick="return confirm('Are You Sure From Deleted... ?')"})
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
